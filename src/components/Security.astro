@@ -1,0 +1,41 @@
+---
+const domain = new URL(Astro.site ?? 'https://shreeve.dev').hostname;
+
+const scans = [
+	{
+		name: 'Mozilla HTTP Observatory',
+		url: `https://developer.mozilla.org/en-US/observatory/analyze?host=${domain}`,
+	},
+	{
+		name: 'Security Headers',
+		url: `https://securityheaders.com/?q=${domain}&followRedirects=on`,
+	},
+	{
+		name: 'Qualys SSL Labs',
+		url: `https://www.ssllabs.com/ssltest/analyze.html?d=${domain}`,
+	},
+];
+---
+
+<section id="security" class="section" aria-labelledby="security-heading">
+	<div class="wrap">
+		<h2 id="security-heading">Security</h2>
+		<p class="section__intro">
+			This site sends a strict Content Security Policy with no inline scripts or styles, HSTS, and
+			the other standard security headers. It loads nothing from third parties. The links below run
+			a live scan of {domain}.
+		</p>
+		<ul class="link-list">
+			{
+				scans.map((scan) => (
+					<li>
+						<a href={scan.url} rel="noopener noreferrer">
+							{scan.name}
+						</a>
+					</li>
+				))
+			}
+			<li><a href="/.well-known/security.txt">security.txt</a></li>
+		</ul>
+	</div>
+</section>

@@ -379,6 +379,12 @@ a:hover {
 	font-size: 0.8125rem;
 }
 
+.link-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1.5rem;
+}
+
 /* Footer */
 
 .site-footer {
