@@ -23,6 +23,8 @@ jobs:
         with:
           context: .
           push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           tags: |
             ghcr.io/shreeve-dev/website:latest
             ghcr.io/shreeve-dev/website:${{ github.sha }}
