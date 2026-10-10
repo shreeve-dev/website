@@ -1,7 +1,8 @@
 # Portfolio site brief
 
 > Status note, 2026-10-10: after writing this brief, Carson approved working
-> through all four phases and pushing. The original text follows unchanged,
+> through all four phases and pushing, and later asked for the lab status
+> cache to be 15 seconds instead of 60. The original text follows unchanged,
 > apart from the last sentence, which was cut off when it was pasted.
 
 You are building out my personal portfolio site in this repo. Read this whole

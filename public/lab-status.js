@@ -40,7 +40,7 @@ if (section) {
 			fields.cpu.textContent = `${status.cpuPercent}%`;
 			fields.memory.textContent = `${status.memoryPercent}%`;
 			fields.guests.textContent = `${plural(status.runningContainers, 'container')}, ${plural(status.runningVms, 'VM')}`;
-			const time = new Date(status.updatedAt).toISOString().slice(11, 16);
+			const time = new Date(status.updatedAt).toISOString().slice(11, 19);
 			message.textContent = `Updated ${time} UTC.`;
 			section.dataset.labStatus = 'live';
 		} catch {
@@ -52,5 +52,5 @@ if (section) {
 	refresh();
 	setInterval(() => {
 		if (!document.hidden) refresh();
-	}, 60_000);
+	}, 15_000);
 }

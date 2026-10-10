@@ -19,9 +19,9 @@ Until it is configured, the page shows "unavailable".
 1. On the Proxmox host, create a read-only user and token:
 
    ```
-   pveum user add status@pve --comment "Read-only site status"
-   pveum acl modify / --users status@pve --roles PVEAuditor
-   pveum user token add status@pve website --privsep 0
+   pveum user add <user>@pve --comment "Read-only site status"
+   pveum acl modify / --users <user>@pve --roles PVEAuditor
+   pveum user token add <user>@pve <token-name> --privsep 0
    ```
 
    The last command prints the token secret once.

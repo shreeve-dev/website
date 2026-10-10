@@ -21,7 +21,7 @@ export type LabStatus =
 	  }
 	| { available: false };
 
-const CACHE_MS = 60_000;
+const CACHE_MS = 15_000;
 const TIMEOUT_MS = 4_000;
 const MAX_BODY_BYTES = 1_000_000;
 
@@ -32,7 +32,7 @@ export function getLabStatus(): Promise<LabStatus> {
 	if (cached && cached.expires > Date.now()) {
 		return Promise.resolve(cached.value);
 	}
-	// Failures are cached too, so an outage costs one request a minute.
+	// Failures are cached too, so an outage costs one request per cache window.
 	pending ??= loadStatus()
 		.catch((error: unknown) => {
 			const code = (error as { code?: unknown } | null)?.code;
