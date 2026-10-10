@@ -1,0 +1,31 @@
+---
+import Todo from './Todo.astro';
+import { skills } from '../data/profile';
+---
+
+<section id="skills" class="section" aria-labelledby="skills-heading">
+	<div class="wrap">
+		<h2 id="skills-heading">Skills</h2>
+
+		<div class="grid grid--four">
+			{
+				skills.map((group) => (
+					<div class="card">
+						<h3>{group.category}</h3>
+						{group.items.length > 0 ? (
+							<ul class="plain-list">
+								{group.items.map((item) => (
+									<li>{item}</li>
+								))}
+							</ul>
+						) : (
+							<p>
+								<Todo>{group.todo}</Todo>
+							</p>
+						)}
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

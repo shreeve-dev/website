@@ -1,0 +1,27 @@
+---
+import { profile } from '../data/profile';
+
+const links = [
+	{ href: '/#credentials', label: 'Credentials' },
+	{ href: '/#experience', label: 'Experience' },
+	{ href: '/#skills', label: 'Skills' },
+	{ href: '/#contact', label: 'Contact' },
+];
+---
+
+<header class="site-header">
+	<div class="wrap site-header__inner">
+		<a class="site-header__name" href="/">{profile.name}</a>
+		<nav aria-label="Sections">
+			<ul class="site-nav">
+				{
+					links.map((link) => (
+						<li>
+							<a href={link.href}>{link.label}</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+	</div>
+</header>

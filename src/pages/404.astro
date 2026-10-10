@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile } from '../data/profile';
+---
+
+<Base title={`Page not found | ${profile.name}`} description="That page does not exist.">
+	<section class="section" aria-labelledby="missing-heading">
+		<div class="wrap">
+			<h1 id="missing-heading">Page not found</h1>
+			<p>That page does not exist. <a href="/">Go to the home page</a>.</p>
+		</div>
+	</section>
+</Base>
