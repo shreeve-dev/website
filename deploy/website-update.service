@@ -1,0 +1,13 @@
+[Unit]
+Description=Pull the latest website image and restart if it changed
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/website
+ExecStart=/usr/bin/docker compose pull --quiet
+# "up -d" only recreates the container when the pulled image differs
+ExecStart=/usr/bin/docker compose up -d --remove-orphans
+ExecStartPost=/usr/bin/docker image prune -f

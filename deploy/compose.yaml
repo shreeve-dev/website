@@ -1,0 +1,6 @@
+services:
+  website:
+    image: ghcr.io/shreeve-dev/website:latest
+    restart: unless-stopped
+    ports:
+      - "4321:4321"
