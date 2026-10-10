@@ -4,3 +4,8 @@ services:
     restart: unless-stopped
     ports:
       - "4321:4321"
+    # Optional settings for the live lab status (see README.md). The file
+    # lives only on the server and is never committed.
+    env_file:
+      - path: .env
+        required: false

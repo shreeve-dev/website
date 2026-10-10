@@ -1,0 +1,39 @@
+---
+// The markup is the "unavailable" state. public/lab-status.js replaces it
+// when the status endpoint answers.
+const stats = [
+	{ key: 'uptime', label: 'Host uptime' },
+	{ key: 'cpu', label: 'CPU in use' },
+	{ key: 'memory', label: 'Memory in use' },
+	{ key: 'guests', label: 'Running guests' },
+];
+---
+
+<section
+	id="lab-status"
+	class="section"
+	aria-labelledby="lab-status-heading"
+	data-lab-status="unavailable"
+>
+	<div class="wrap">
+		<h2 id="lab-status-heading">Live lab status</h2>
+		<p class="section__intro">
+			Read-only numbers from the Proxmox host that served this page, refreshed every 60 seconds.
+		</p>
+		<dl class="stats">
+			{
+				stats.map((stat) => (
+					<div class="stats__item">
+						<dt>{stat.label}</dt>
+						<dd data-lab={stat.key}>&ndash;</dd>
+					</div>
+				))
+			}
+		</dl>
+		<p class="stats__message" data-lab-message role="status">
+			Live status is unavailable right now.
+		</p>
+	</div>
+</section>
+
+<script is:inline type="module" src="/lab-status.js"></script>

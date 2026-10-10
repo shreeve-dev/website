@@ -435,6 +435,40 @@ a:hover {
 	font-size: 0.9375rem;
 }
 
+/* Lab status */
+
+.stats {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+}
+
+.stats__item {
+	min-width: 0;
+	padding: 0.875rem 1rem;
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	background: var(--surface);
+}
+
+.stats dt {
+	color: var(--muted);
+	font-family: var(--mono);
+	font-size: 0.8125rem;
+}
+
+.stats dd {
+	margin-top: 0.25rem;
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+.stats__message {
+	margin-top: 1rem;
+	color: var(--muted);
+	font-size: 0.9375rem;
+}
+
 /* Footer */
 
 .site-footer {
@@ -475,6 +509,10 @@ a:hover {
 }
 
 @media (min-width: 60rem) {
+	.stats {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
 	.path {
 		grid-template-columns: repeat(5, 1fr);
 		gap: 1.75rem;

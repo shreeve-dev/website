@@ -5,6 +5,7 @@ import Credentials from '../components/Credentials.astro';
 import Experience from '../components/Experience.astro';
 import Skills from '../components/Skills.astro';
 import RequestPath from '../components/RequestPath.astro';
+import LabStatus from '../components/LabStatus.astro';
 import Security from '../components/Security.astro';
 import Contact from '../components/Contact.astro';
 import { profile } from '../data/profile';
@@ -19,6 +20,7 @@ const description = `${profile.name}, ${profile.role} at ${profile.employer}. Fo
 	<Experience />
 	<Skills />
 	<RequestPath />
+	<LabStatus />
 	<Security />
 	<Contact />
 </Base>
