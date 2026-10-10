@@ -1,11 +1,25 @@
 ---
 import { profile } from '../data/profile';
-
-const year = new Date().getUTCFullYear();
+import { build } from '../lib/build';
 ---
 
 <footer class="site-footer">
 	<div class="wrap site-footer__inner">
-		<p>&copy; {year} {profile.name}</p>
+		<p>&copy; {build.time.getUTCFullYear()} {profile.name}</p>
+		<p class="site-footer__build">
+			Build{' '}
+			{
+				build.commitUrl ? (
+					<a href={build.commitUrl} rel="noopener noreferrer">
+						<span class="visually-hidden">commit </span>
+						{build.shortSha}
+					</a>
+				) : (
+					<span>local</span>
+				)
+			}
+			{' · '}
+			<time datetime={build.time.toISOString()}>{build.timeLabel}</time>
+		</p>
 	</div>
 </footer>

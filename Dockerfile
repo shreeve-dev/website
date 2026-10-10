@@ -3,6 +3,8 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
+ARG COMMIT_SHA
+ENV COMMIT_SHA=$COMMIT_SHA
 RUN npm run build
 
 FROM node:26-alpine AS runtime

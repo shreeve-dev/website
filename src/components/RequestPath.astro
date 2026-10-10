@@ -1,0 +1,44 @@
+---
+const hops = [
+	{
+		name: 'Your browser',
+		detail: 'Asks for this page over HTTPS.',
+	},
+	{
+		name: 'Cloudflare DNS',
+		detail: 'Answers the lookup for this domain.',
+	},
+	{
+		name: 'Cloud VPS',
+		detail: 'Nginx Proxy Manager terminates TLS and forwards the request.',
+	},
+	{
+		name: 'Tailscale tunnel',
+		detail: 'Carries the request privately to the home network.',
+	},
+	{
+		name: 'Container at home',
+		detail: 'Runs on a Proxmox host behind NAT, with no inbound ports open, and serves the page.',
+	},
+];
+---
+
+<section id="lab" class="section" aria-labelledby="lab-heading">
+	<div class="wrap">
+		<h2 id="lab-heading">How this page reached you</h2>
+		<p class="section__intro">
+			This site runs from a home lab. Nothing at home accepts connections from the internet; the
+			request reaches it through a tunnel.
+		</p>
+		<ol class="path">
+			{
+				hops.map((hop) => (
+					<li class="path__hop">
+						<h3>{hop.name}</h3>
+						<p>{hop.detail}</p>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>
