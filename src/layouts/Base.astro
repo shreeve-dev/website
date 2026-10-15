@@ -6,9 +6,11 @@ import Footer from '../components/Footer.astro';
 interface Props {
 	title: string;
 	description: string;
+	// Keeps pages meant for sharing by link, like /play, out of search results.
+	noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -21,6 +23,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 		<meta name="theme-color" content="#0b0f14" />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		{noindex && <meta name="robots" content="noindex" />}
 		<link rel="canonical" href={canonical} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta property="og:type" content="website" />

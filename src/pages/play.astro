@@ -1,0 +1,140 @@
+---
+import Base from '../layouts/Base.astro';
+import {
+	modpack,
+	curseforgeInstallUrl,
+	curseforgeFileUrl,
+	curseforgeAppUrl,
+	statusUrl,
+	servers,
+} from '../data/games';
+import { profile } from '../data/profile';
+
+const statusHost = new URL(statusUrl).hostname;
+---
+
+<Base
+	title={`Play | ${profile.name}`}
+	description="How to join the shreeve.dev Minecraft and Terraria servers."
+	noindex
+>
+	<section class="hero" aria-labelledby="play-heading">
+		<div class="wrap">
+			<h1 id="play-heading">Game servers</h1>
+			<p class="hero__focus">
+				Three servers for friends. Pick one below, follow its steps, and you are in.
+			</p>
+			<div class="hero__actions">
+				<a class="button button--quiet" href={statusUrl}>Live server status</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="modded" class="section" aria-labelledby="modded-heading">
+		<div class="wrap">
+			<h2 id="modded-heading">Modded Minecraft</h2>
+			<p class="section__intro">
+				{modpack.name}: hundreds of mods for tech, magic and exploration, on Minecraft {
+					modpack.minecraft
+				}. Your game needs the same modpack, version {modpack.version}, before it can connect.
+			</p>
+
+			<ol class="steps">
+				<li class="steps__item">
+					<h3>Get the CurseForge app</h3>
+					<p>It is free and installs modpacks for you.</p>
+					<p><a class="button button--quiet" href={curseforgeAppUrl}>Download CurseForge</a></p>
+				</li>
+				<li class="steps__item">
+					<h3>Install {modpack.name}, version {modpack.version}</h3>
+					<p>
+						This button opens the CurseForge app on the right version. If nothing happens, open the
+						version page and choose <strong>Install</strong> there.
+					</p>
+					<p class="steps__actions">
+						<a class="button" href={curseforgeInstallUrl}>Install {modpack.name} {modpack.version}</a>
+						<a href={curseforgeFileUrl} rel="noopener noreferrer">Version page on CurseForge</a>
+					</p>
+					<p class="steps__note">
+						Stay on version {modpack.version}. If CurseForge offers an update, skip it until the server
+						updates too.
+					</p>
+				</li>
+				<li class="steps__item">
+					<h3>Give the game enough memory</h3>
+					<p>
+						In CurseForge, open <strong>Settings</strong>, then <strong>Minecraft</strong>, and set
+						the memory to at least 8 GB. The pack stutters or crashes with less.
+					</p>
+				</li>
+				<li class="steps__item">
+					<h3>Join the server</h3>
+					<p>
+						Press <strong>Play</strong>, choose <strong>Multiplayer</strong>, then{' '}
+						<strong>Add Server</strong>, and enter this address:
+					</p>
+					<p class="address">
+						<code class="address__value">{servers.modded.address}</code>
+						<button class="address__copy" type="button" data-copy={servers.modded.address} hidden>
+							Copy
+						</button>
+					</p>
+				</li>
+			</ol>
+		</div>
+	</section>
+
+	<section id="minecraft" class="section" aria-labelledby="minecraft-heading">
+		<div class="wrap">
+			<h2 id="minecraft-heading">Minecraft</h2>
+			<p class="section__intro">
+				Plain survival on Minecraft Java Edition {servers.minecraft.version}. No mods needed: start
+				the normal game, choose <strong>Multiplayer</strong>, then <strong>Add Server</strong>.
+			</p>
+			<p class="address">
+				<code class="address__value">{servers.minecraft.address}</code>
+				<button class="address__copy" type="button" data-copy={servers.minecraft.address} hidden>
+					Copy
+				</button>
+			</p>
+		</div>
+	</section>
+
+	<section id="terraria" class="section" aria-labelledby="terraria-heading">
+		<div class="wrap">
+			<h2 id="terraria-heading">Terraria</h2>
+			<p class="section__intro">
+				Terraria {servers.terraria.version}. Choose <strong>Multiplayer</strong>, then{' '}
+				<strong>Join via IP</strong>, and enter the address and port below. The server has a
+				password; ask {profile.name.split(' ')[0]} for it.
+			</p>
+			<dl class="contact">
+				<div class="contact__row">
+					<dt>Address</dt>
+					<dd class="address">
+						<code class="address__value">{servers.terraria.address}</code>
+						<button class="address__copy" type="button" data-copy={servers.terraria.address} hidden>
+							Copy
+						</button>
+					</dd>
+				</div>
+				<div class="contact__row">
+					<dt>Port</dt>
+					<dd><code class="address__value">{servers.terraria.port}</code></dd>
+				</div>
+			</dl>
+		</div>
+	</section>
+
+	<section class="section" aria-labelledby="status-heading">
+		<div class="wrap">
+			<h2 id="status-heading">Is it up?</h2>
+			<p class="section__intro">
+				<a href={statusUrl}>{statusHost}</a> shows whether each server is online, who is playing,
+				and how busy the servers are.
+			</p>
+		</div>
+	</section>
+
+	<script is:inline type="module" src="/play.js"></script>
+</Base>
