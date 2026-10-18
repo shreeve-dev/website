@@ -24,6 +24,10 @@ const statusHost = new URL(statusUrl).hostname;
 			<p class="hero__focus">
 				Three servers for friends. Pick one below, follow its steps, and you are in.
 			</p>
+			<p class="play-notice">
+				Heads up: in-game chat on all three servers is shown publicly on the
+				<a href={statusUrl}>live status page</a> and kept for 30 days.
+			</p>
 			<div class="hero__actions">
 				<a class="button button--quiet" href={statusUrl}>Live server status</a>
 			</div>
@@ -131,7 +135,7 @@ const statusHost = new URL(statusUrl).hostname;
 			<h2 id="status-heading">Is it up?</h2>
 			<p class="section__intro">
 				<a href={statusUrl}>{statusHost}</a> shows whether each server is online, who is playing,
-				and how busy the servers are.
+				how busy the servers are, and the in-game chat.
 			</p>
 		</div>
 	</section>
