@@ -35,9 +35,25 @@ const securityHeaders = {
 	'Cross-Origin-Resource-Policy': 'same-origin',
 };
 
+// Short links that point somewhere else. A temporary (302) redirect, so
+// changing a target later never fights a cached permanent one. The site only
+// redirects: the files themselves are served by GitHub, not by this server.
+const redirects = {
+	// DebloatTool one-line install: `irm https://shreeve.dev/win | iex`.
+	// Always the latest release, never unreleased code on main.
+	'/win': 'https://github.com/shreeve-dev/debloattool/releases/latest/download/install.ps1',
+};
+
 const server = http.createServer((req, res) => {
 	for (const [name, value] of Object.entries(securityHeaders)) {
 		res.setHeader(name, value);
+	}
+	const path = (req.url ?? '/').split('?')[0].replace(/\/+$/, '');
+	const target = redirects[path];
+	if (target && (req.method === 'GET' || req.method === 'HEAD')) {
+		res.writeHead(302, { Location: target, 'Cache-Control': 'no-store' });
+		res.end();
+		return;
 	}
 	handler(req, res);
 });
