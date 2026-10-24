@@ -41,7 +41,7 @@ const securityHeaders = {
 const redirects = {
 	// DebloatTool one-line install: `irm https://shreeve.dev/win | iex`.
 	// Always the latest release, never unreleased code on main.
-	'/win': 'https://github.com/shreeve-dev/debloattool/releases/latest/download/install.ps1',
+	'/win': 'https://github.com/shreeve-dev/debloat/releases/latest/download/install.ps1',
 };
 
 const server = http.createServer((req, res) => {
